@@ -27,7 +27,3 @@ jobs:
         protocol: ftps
         port: 22
         server-dir: ./ci/
-        exclude:
-          - **/.git*
-          - **/.git*/**
-          - **/node_modules/**
