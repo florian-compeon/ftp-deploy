@@ -1,5 +1,7 @@
-on: push
 name: 🚀 Deploy website on push
+
+on: push
+
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -13,17 +15,11 @@ jobs:
       with:
         node-version: '16'
 
-    - name: 🔨 Build Project
-      run: |
-        npm install
-        npm run build
-
     - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      uses: milanmk/actions-file-deployer@master
       with:
-        server: ${{ secrets.SERVER }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        protocol: ftps
-        port: 21
-        server-dir: ./ci/
+        remote-protocol: ${{ secrets.PROTOCOL }}
+        remote-host: ${{ secrets.SERVER }}
+        remote-user: ${{ secrets.USERNAME }}
+        ssh-private-key: ${{ secrets.PASSWORD }}
+        remote-path: ./ci/
